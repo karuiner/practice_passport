@@ -67,13 +67,11 @@ app.post(
   }),
   (req, res) => {
     const token = jwt.sign({ ...req.user }, process.env.JWT_SECRET_KEY);
-    req.session.userName = "test";
+    req.session.userName = req.user.userName;
     console.log(req.user);
     console.log(req.session);
     console.log(req.sessionID);
-    req.session.save(function () {
-      res.send({ token });
-    });
+    res.send({ token });
   }
 );
 
@@ -91,10 +89,17 @@ app.post("/signup", (req, res) => {
 
 app.get(
   "/test",
+  (req, res, next) => {
+    if (req.session.userName) {
+      console.log("has data", req.session.userName);
+    } else {
+      console.log("no data");
+    }
+    next();
+  },
   passport.authenticate("session"),
-  passport.authenticate("jwt", { session: true }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    req.session.userName = "test";
     console.log(req.sessionID);
     console.log(req.session);
     console.log(req.user);
@@ -107,7 +112,7 @@ app.get(
 app.get(
   "/test2",
   passport.authenticate("session"),
-  passport.authenticate("jwt", { session: true }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     console.log(req.sessionID);
     console.log(req.session);
