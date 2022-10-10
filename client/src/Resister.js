@@ -3,7 +3,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
-import { Form, Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import Form from "react-bootstrap/Form";
 import Main from "./Main";
 const mainHeight = Math.floor((window.innerHeight - 100) / 100);
 
@@ -19,13 +20,7 @@ export default function Resister() {
       >
         돌아가기{" "}
       </Button>
-      {/* <Form
-      action="localhost:4000/resister"
-      onSubmit={(e) => {
-        e.preventDefault();
-        console.log(e.target);
-      }}
-      >
+      <Form action="http://localhost:4000/signup" method="post">
         <Form.Group className="mb-3" controlId="formBasicUserName">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="text" placeholder="Enter userName" />
@@ -35,10 +30,10 @@ export default function Resister() {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button className="mb-3" variant="primary" type="submit">
           Submit
         </Button>
-      </Form> */}
+      </Form>
     </Container>
   );
 }

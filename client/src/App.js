@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
+import Form from "react-bootstrap/Form";
 import Main from "./Main";
 import Login from "./Login";
 import Resister from "./Resister";
